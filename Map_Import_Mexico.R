@@ -31,9 +31,14 @@ x_lon = c(-96.430907, -96.724295, -97.169855, -97.302253, -97.267255
 
 #add a point on the map
 #mexicomap+geom_point(aes(x=lon,y=lat),data=data.frame(lon=c(-73.255),lat=c(-3.7405)), color = "green")
-mexicomap+geom_point(aes(x=lon,y=lat),data=data.frame(lon=x_lon,lat=y_lat)
+mexicomap +
+  geom_point(aes(x=lon,y=lat),data=data.frame(lon=x_lon,lat=y_lat)
                      , color = c("red", "blue", "blue", "blue", "blue", "red", "blue", "red", "blue", "blue", "blue", "red")
-                     , size = 4)
+                     , size = 4) +
+  annotate("text", x= -96.430907, y=17.40, label = "Yavesia", size = 5, fontface = 2, color = "red") +
+  annotate("text", x= -97.610615, y=16.24, label = "Santa Rosa de Lima", size = 5, fontface = 2, color = "red") +
+  annotate("text", x= -92.540653, y=15.24, label = "Huixtla", size = 5, fontface = 2, color = "red") +
+  annotate("text", x= -92.574365, y=16.65, label = "Nuevo Leon", size = 5, fontface = 2, color = "red") 
 
 #save the image of the map
 ggsave("mapSampledCities.png",dpi=600)
@@ -67,7 +72,7 @@ x_lon = c(-96.430907, -96.724295, -97.169855, -97.302253, -97.267255
 mexicomapout +
   geom_point(aes(x=lon,y=lat),data=data.frame(lon=x_lon,lat=y_lat)
                      , color = c("red", "blue", "blue", "blue", "blue", "red", "blue", "red", "blue", "blue", "blue", "red")
-                     , size = 2)
+                     , size = 2) 
 
 #save the image of the map
 ggsave("mapMexicoZoomOut.png", dpi=600)
