@@ -169,6 +169,12 @@ c1 <- data.frame(
   Answer = c("No Problem", "A Small Problem", "Sometimes A Problem", "A Big Problem")
   , value = c(29.3, 20.7, 15.5, 34.5)
 )
+# This code orders the legend in reverse order from that listed in the vector. The default is in abc order.
+c1$Answer <- factor(c1$Answer, levels = rev(as.character(c1$Answer)))
+# remove the rev() if you want legend to be in the same order as the vector
+# c1$Answer <- factor(c1$Answer, levels = as.character(c1$Answer))
+
+
 bp <- ggplot(c1, aes(x="", y=value, fill = Answer)) +
   geom_bar(width = 1, stat = "identity")
 c1.pie <- bp +
@@ -183,6 +189,9 @@ c1.pie <- bp +
         , panel.background = element_rect(fill = "transparent",colour = NA)
   ) 
 c1.pie
+
+
+
 ggsave(filename = "c1_pie.png", dpi = 600, bg = "transparent")
 
 
