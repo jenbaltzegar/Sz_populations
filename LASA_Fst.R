@@ -23,21 +23,31 @@ city.pair.fst <- c(0.0861786, 0.0977684, 0.1072850, 0.0990473, 0.1073610, 0.0944
 city.pair.distance <- as.data.frame(cbind(city.pair, distance.km, distance.min, city.pair.fst))
 city.pair.distance
 
+#make discrete values read as continuous 
+city.pair.distance$distance.km <- as.numeric(as.character(city.pair.distance$distance.km))
+city.pair.distance$city.pair.fst <- as.numeric(as.character(city.pair.distance$city.pair.fst))
+
+# Load library
 library(ggplot2)
 # Basic scatter plot for Fst by distance in km
 ggplot(city.pair.distance, aes(x=distance.km, y=city.pair.fst)) + 
   geom_point(size=4, color = "red") +
-  geom_text(label=city.pair, nudge_y = 0.2, fontface = 2) +
-  labs(x = "Distance (km)", y = "Fst"
-       #, title = "Fst by Distance (km)"
-       )
+  geom_text(label=city.pair
+            , nudge_y = 0.001
+            , fontface = 2) +
+  geom_smooth(method='lm', se = FALSE) +
+  labs(x = "Distance (km)", y = "Fst", title = "Fst by Distance (km)") +
+  theme(plot.title = element_text(hjust = 0.5))
+
+# Save file
 ggsave(filename = "FstByDistance.png", dpi = 600)
 
 # Basic scatter plot for Fst by distance in minutes traveled
 ggplot(city.pair.distance, aes(x=distance.min, y=city.pair.fst)) + 
   geom_point(size=3, color = "red") +
   geom_text(label=city.pair, nudge_y = 0.2) +
-  labs(x = "Distance (min)", y = "Fst", title = "Fst by Time (min)")
+  labs(x = "Distance (min)", y = "Fst", title = "Fst by Time (min)") +
+  
 
 
 # attach(city.pair.distance)
