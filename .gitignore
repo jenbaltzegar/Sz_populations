@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+raw/
+cleaned/
+stacks.denovo/
+tests.denovo/
